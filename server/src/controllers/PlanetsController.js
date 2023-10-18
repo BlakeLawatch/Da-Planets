@@ -6,8 +6,17 @@ export class PlanetsController extends BaseController {
     constructor() {
         super('api/planets')
         this.router
+            .get('', this.getPlanet)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createPlanet)
+    }
+    async getPlanet(req, res, next) {
+        try {
+            const planets = await planetService.getPlanets()
+            return res.send(planets)
+        } catch (error) {
+            next(error)
+        }
     }
     async createPlanet(req, res, next) {
         try {

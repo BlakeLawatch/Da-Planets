@@ -6,7 +6,8 @@ export const PlanetSchema = new Schema(
         name: { type: String, required: true, maxLength: 50 },
         shape: { type: String, required: true, maxLength: 50 },
         habitable: { type: Boolean, required: true },
-        creatorId: { type: Auth0Provider.getAuthorizedUserInfo }
+        galaxyId: { type: Schema.Types.ObjectId, required: true, ref: 'Galaxy' },
+        creatorId: { type: Schema.Types.ObjectId, ref: 'Account' }
     },
     {
         timestamps: true,
