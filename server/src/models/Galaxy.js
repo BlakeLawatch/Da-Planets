@@ -11,3 +11,11 @@ export const GalaxySchema = new Schema(
         toJSON: { virtuals: true }
     }
 )
+
+
+GalaxySchema.virtual('creator', {
+    localfield: 'creatorId',
+    ref: 'Account',
+    foreignField: "_id",
+    justOne: true
+})
